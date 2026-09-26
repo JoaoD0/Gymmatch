@@ -157,6 +157,58 @@ Acesse **http://localhost:5500**.
 
 > As animações de transição entre telas funcionam no **Chrome e no Edge**. Em outros navegadores, as telas só trocam sem animação.
 
+### 4. Dados de demonstração (opcional, recomendado para apresentar)
+
+Com o back-end rodando, em outro terminal:
+
+```bash
+cd backend
+venv\Scripts\activate
+python scripts/seed_demo.py
+```
+
+O script cria a academia **Iron Club Paulista** com 13 pessoas fictícias (rostos gerados por IA), matches, conversas, curtidas, posts no Feed, Moves, check-in, boost, convites e grupo de treino. Tudo é criado pela própria API, respeitando as regras do app. Depois é só entrar com:
+
+- **E-mail:** `lucas.andrade@gymmatch.app`
+- **Senha:** `demo1234`
+
+As outras contas usam a mesma senha (`camila.rocha@gymmatch.app`, `rafael.costa@gymmatch.app`...). O script pode ser rodado de novo quando quiser: ele apaga só a demo anterior e recria tudo com os horários atualizados. Vale rodar perto da apresentação, porque os Moves somem em 24h, o check-in dura 3h e o boost dura 1h.
+
+### 5. Ver o banco no MySQL Workbench
+
+1. Abra o Workbench e crie uma conexão com `localhost`, porta `3306`, usuário `root` e a senha do seu MySQL.
+2. Na aba **Schemas**, expanda **gymmatch → Tables**.
+3. Clique com o botão direito numa tabela (ex.: `usuarios`, `matches`, `mensagens`, `posts`) → **Select Rows**.
+
+Consultas úteis para mostrar as relações:
+
+```sql
+-- matches ativos com os nomes das duas pessoas
+SELECT m.id, u1.nome AS pessoa_1, u2.nome AS pessoa_2, m.criado_em
+FROM matches m
+JOIN usuarios u1 ON u1.id = m.usuario1_id
+JOIN usuarios u2 ON u2.id = m.usuario2_id
+WHERE m.ativo = TRUE;
+
+-- conversa entre o Lucas e a Camila, em ordem
+SELECT u.nome, msg.texto, msg.criado_em
+FROM mensagens msg
+JOIN usuarios u ON u.id = msg.remetente_id
+JOIN matches m ON m.id = msg.match_id
+JOIN usuarios a ON a.id = m.usuario1_id
+JOIN usuarios b ON b.id = m.usuario2_id
+WHERE a.nome = 'Lucas Andrade' AND b.nome = 'Camila Rocha'
+ORDER BY msg.criado_em;
+
+-- posts do feed com número de curtidas
+SELECT u.nome, p.tipo, p.texto, COUNT(c.usuario_id) AS curtidas
+FROM posts p
+JOIN usuarios u ON u.id = p.autor_id
+LEFT JOIN curtidas_post c ON c.post_id = p.id
+GROUP BY p.id
+ORDER BY p.criado_em DESC;
+```
+
 ### Testando
 1. Crie duas contas e escolha a **mesma academia** nas duas.
 2. Com a conta A, vá em **Descobrir** e curta a conta B. Com a conta B, curta a conta A: aparece **"É um match!"**.
