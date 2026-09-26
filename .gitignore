@@ -1,0 +1,22 @@
+# segredos: senha do banco e chave da IA ficam só na máquina (use backend/.env.example como modelo)
+.env
+
+# ambiente e cache do Python
+backend/venv/
+venv/
+__pycache__/
+*.pyc
+
+# arquivos enviados pelos usuários (fotos de perfil, feed, moves)
+backend/uploads/
+
+# retrato antigo do banco, com dados reais de contas
+backend/gymmatch_dump.sql
+
+# configurações locais de ferramentas
+.claude/
+.vscode/
+.idea/
+package-lock.json
+Thumbs.db
+.DS_Store

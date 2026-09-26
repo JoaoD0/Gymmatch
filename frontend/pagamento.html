@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>GymMatch — Finalizar assinatura</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/pagamento.css" />
+    <!-- pinta a página nova só depois dos scripts do fim do body (a barra precisa já estar desenhada para a transição) -->
+    <link rel="expect" href="#fim-da-pagina" blocking="render" />
+    <script src="js/transicoes.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="pag-header">
+            <button class="pag-back" id="btn-voltar" aria-label="Voltar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            </button>
+            <h1>Finalizar assinatura</h1>
+        </div>
+
+        <div id="pag-plano-card"><p class="subtitle">Carregando...</p></div>
+
+        <div class="pag-aviso" id="pag-aviso" hidden></div>
+
+        <form id="form-pagamento" hidden>
+            <label>Nome impresso no cartão</label>
+            <input type="text" id="pag-nome" autocomplete="cc-name" />
+            <p class="error" id="erro-pag-nome"></p>
+
+            <label>Número do cartão</label>
+            <div class="pag-numero-wrap">
+                <input type="text" id="pag-numero" inputmode="numeric" placeholder="0000 0000 0000 0000" autocomplete="cc-number" />
+                <span class="pag-bandeira" id="pag-bandeira"></span>
+            </div>
+            <p class="error" id="erro-pag-numero"></p>
+
+            <div class="pag-linha-dupla">
+                <div>
+                    <label>Validade</label>
+                    <input type="text" id="pag-validade" inputmode="numeric" placeholder="MM/AA" maxlength="5" autocomplete="cc-exp" />
+                    <p class="error" id="erro-pag-validade"></p>
+                </div>
+                <div>
+                    <label>CVV</label>
+                    <input type="password" id="pag-cvv" inputmode="numeric" maxlength="4" autocomplete="cc-csc" />
+                    <p class="error" id="erro-pag-cvv"></p>
+                </div>
+            </div>
+
+            <button type="submit" class="pag-btn-assinar" id="btn-assinar"></button>
+
+            <div class="pag-selos">
+                <div class="pag-selo"></div>
+                <div class="pag-selo"></div>
+                <div class="pag-selo"></div>
+            </div>
+        </form>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/icons.js"></script>
+    <script src="js/pagamento.js"></script>
+    <span id="fim-da-pagina" hidden></span>
+</body>
+</html>

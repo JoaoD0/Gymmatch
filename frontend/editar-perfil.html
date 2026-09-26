@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>GymMatch — Editar perfil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/onboarding.css" />
+    <link rel="stylesheet" href="css/editar-perfil.css" />
+    <!-- pinta a página nova só depois dos scripts do fim do body (a barra precisa já estar desenhada para a transição) -->
+    <link rel="expect" href="#fim-da-pagina" blocking="render" />
+    <script src="js/transicoes.js"></script>
+</head>
+<body>
+    <div class="container" style="padding-bottom:60px">
+        <div class="ep-header">
+            <button class="ep-back" id="btn-voltar" aria-label="Voltar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            </button>
+            <h1>Editar perfil</h1>
+            <button class="btn-primary ep-salvar" id="btn-salvar">Salvar</button>
+        </div>
+
+        <p id="ep-carregando" class="subtitle">Carregando...</p>
+
+        <form id="form-editar" hidden>
+            <!-- ---------- informações pessoais ---------- -->
+            <p class="ep-section-title">Informações pessoais</p>
+
+            <label>Nome</label>
+            <input type="text" id="ep-nome" maxlength="60" />
+            <p class="ep-error-inline" id="ep-nome-erro"></p>
+
+            <label>Gênero</label>
+            <select id="ep-genero">
+                <option value="masculino">Masculino</option>
+                <option value="feminino">Feminino</option>
+                <option value="nao_binario">Não-binário</option>
+                <option value="outro">Outro</option>
+            </select>
+
+            <label>Orientação sexual</label>
+            <select id="ep-orientacao">
+                <option value="">Prefiro não dizer</option>
+                <option value="Heterossexual">Heterossexual</option>
+                <option value="Homossexual">Homossexual</option>
+                <option value="Bissexual">Bissexual</option>
+                <option value="Pansexual">Pansexual</option>
+            </select>
+            <div class="ep-switch-row">
+                <span>Ocultar do meu perfil</span>
+                <label class="switch">
+                    <input type="checkbox" id="ep-ocultar-orientacao" />
+                    <span class="track"><span class="thumb"></span></span>
+                </label>
+            </div>
+
+            <!-- ---------- treino ---------- -->
+            <p class="ep-section-title">Treino</p>
+
+            <label>Nível</label>
+            <select id="ep-nivel">
+                <option value="iniciante">Iniciante</option>
+                <option value="intermediario">Intermediário</option>
+                <option value="avancado">Avançado</option>
+            </select>
+
+            <label>Modalidades</label>
+            <div class="pill-group" id="ep-modalidades">
+                <button type="button" class="pill" data-value="Musculação">Musculação</button>
+                <button type="button" class="pill" data-value="Crossfit">Crossfit</button>
+                <button type="button" class="pill" data-value="Corrida">Corrida</button>
+                <button type="button" class="pill" data-value="Calistenia">Calistenia</button>
+                <button type="button" class="pill" data-value="Yoga">Yoga</button>
+                <button type="button" class="pill" data-value="Boxe">Boxe</button>
+                <button type="button" class="pill" data-value="HIIT">HIIT</button>
+                <button type="button" class="pill" data-value="Natação">Natação</button>
+            </div>
+
+            <label>Divisão de treino</label>
+            <select id="ep-divisao">
+                <option value="">Selecione...</option>
+                <option value="ABC">ABC</option>
+                <option value="ABCD">ABCD</option>
+                <option value="ABCDE">ABCDE</option>
+                <option value="Superior/Inferior">Superior/Inferior</option>
+                <option value="Full Body">Full Body</option>
+                <option value="Outro">Outro</option>
+            </select>
+
+            <!-- ---------- objetivos e disponibilidade ---------- -->
+            <p class="ep-section-title">Objetivos e disponibilidade</p>
+
+            <label>Objetivo atual de treino</label>
+            <div class="pill-group" id="ep-objetivo" data-single="true">
+                <button type="button" class="pill" data-value="emagrecer">Emagrecer</button>
+                <button type="button" class="pill" data-value="hipertrofia">Hipertrofia</button>
+                <button type="button" class="pill" data-value="condicionamento">Condicionamento</button>
+                <button type="button" class="pill" data-value="saude">Saúde</button>
+                <button type="button" class="pill" data-value="outro">Outro</button>
+            </div>
+
+            <label>Recordes pessoais (opcional)</label>
+            <div class="ep-recordes">
+                <div class="ep-recorde-row">
+                    <label for="ep-pr-supino">Supino</label>
+                    <div class="ep-recorde-input-wrap"><input type="number" id="ep-pr-supino" min="0" step="0.5" /><span>kg</span></div>
+                </div>
+                <div class="ep-recorde-row">
+                    <label for="ep-pr-agachamento">Agachamento</label>
+                    <div class="ep-recorde-input-wrap"><input type="number" id="ep-pr-agachamento" min="0" step="0.5" /><span>kg</span></div>
+                </div>
+                <div class="ep-recorde-row">
+                    <label for="ep-pr-terra">Terra</label>
+                    <div class="ep-recorde-input-wrap"><input type="number" id="ep-pr-terra" min="0" step="0.5" /><span>kg</span></div>
+                </div>
+            </div>
+
+            <label>O que você busca</label>
+            <div class="pill-group" id="ep-procurando" data-single="true">
+                <button type="button" class="pill" data-value="amizade">Amizade</button>
+                <button type="button" class="pill" data-value="parceiro_treino">Parceiro de treino</button>
+                <button type="button" class="pill" data-value="romance">Romance</button>
+            </div>
+
+            <label>Também aberto a</label>
+            <div class="pill-group" id="ep-aberto-a">
+                <button type="button" class="pill" data-value="amizade">Amizade</button>
+                <button type="button" class="pill" data-value="parceiro_treino">Parceiro de treino</button>
+                <button type="button" class="pill" data-value="romance">Romance</button>
+            </div>
+
+            <label>Horários disponíveis</label>
+            <div class="pill-group" id="ep-quando-treina">
+                <button type="button" class="pill" data-value="manha">Manhã</button>
+                <button type="button" class="pill" data-value="tarde">Tarde</button>
+                <button type="button" class="pill" data-value="noite">Noite</button>
+            </div>
+            <div class="ep-switch-row">
+                <span>Ocultar do meu perfil</span>
+                <label class="switch">
+                    <input type="checkbox" id="ep-ocultar-horarios" />
+                    <span class="track"><span class="thumb"></span></span>
+                </label>
+            </div>
+
+            <label>Interesses <span id="ep-interesses-contagem">0/5</span></label>
+            <div class="ep-interesses-input">
+                <input type="text" id="ep-interesse-novo" maxlength="30" placeholder="Ex: leitura, viagens..." />
+                <button type="button" class="btn-secondary" id="ep-interesse-add">+</button>
+            </div>
+            <div class="ep-chips" id="ep-chips"></div>
+
+            <label>Bio</label>
+            <textarea id="ep-bio" maxlength="500"></textarea>
+
+            <!-- ---------- academia ---------- -->
+            <p class="ep-section-title">Minha academia</p>
+
+            <div class="ep-academia-busca">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+                <input type="text" id="ep-academia-busca" placeholder="Buscar por nome ou endereço" />
+            </div>
+            <div class="ep-academia-lista" id="ep-academia-lista"></div>
+            <p class="ep-error-inline" id="ep-academia-erro"></p>
+
+            <!-- ---------- somente leitura ---------- -->
+            <p class="ep-section-title">Informações da conta</p>
+            <div class="ep-readonly-grid" id="ep-readonly-grid"></div>
+            <p class="ep-readonly-nota">Estes campos não podem ser alterados após o cadastro. Fale com o suporte se precisar corrigir algo.</p>
+
+            <div class="ep-footer-space"></div>
+        </form>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/icons.js"></script>
+    <script src="js/editar-perfil.js"></script>
+    <span id="fim-da-pagina" hidden></span>
+</body>
+</html>

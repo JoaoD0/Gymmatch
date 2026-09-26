@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>GymMatch — Perfil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+    <link rel="stylesheet" href="css/perfil.css" />
+    <link rel="stylesheet" href="css/configuracoes.css" />
+    <link rel="stylesheet" href="css/match-overlay.css" />
+    <link rel="stylesheet" href="css/lucia.css" />
+    <!-- pinta a página nova só depois dos scripts do fim do body (a barra precisa já estar desenhada para a transição) -->
+    <link rel="expect" href="#fim-da-pagina" blocking="render" />
+    <script src="js/transicoes.js"></script>
+</head>
+<body>
+    <div id="perfil-root"></div>
+
+    <nav id="bottom-nav"></nav>
+
+    <script src="js/api.js"></script>
+    <script src="js/icons.js"></script>
+    <script src="js/notificacoes.js"></script>
+    <script src="js/lucia.js"></script>
+    <script src="js/sheet.js"></script>
+    <script src="js/match-overlay.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/configuracoes.js"></script>
+    <script src="js/perfil.js"></script>
+    <span id="fim-da-pagina" hidden></span>
+</body>
+</html>

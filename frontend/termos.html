@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>GymMatch — Termos de uso</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/legal.css" />
+    <!-- pinta a página nova só depois dos scripts do fim do body (a barra precisa já estar desenhada para a transição) -->
+    <link rel="expect" href="#fim-da-pagina" blocking="render" />
+    <script src="js/transicoes.js"></script>
+</head>
+<body>
+    <main class="legal">
+        <button type="button" class="legal-voltar" id="voltar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            Voltar
+        </button>
+        <h1>Termos de uso</h1>
+        <p class="legal-data">GymMatch · versão 1.0</p>
+
+        <p class="legal-aviso">O GymMatch é um <strong>projeto acadêmico</strong> da disciplina de Programação Orientada a Objetos. Não é um serviço comercial e não há nenhuma empresa por trás dele.</p>
+
+        <h2>Quem pode usar</h2>
+        <p>O app é destinado a pessoas com <strong>18 anos ou mais</strong>. Ao criar uma conta, você declara ter essa idade.</p>
+
+        <h2>Como usar com respeito</h2>
+        <ul>
+            <li>Use seu próprio nome e fotos suas.</li>
+            <li>Não envie conteúdo ofensivo, sexual, discriminatório ou que exponha outras pessoas.</li>
+            <li>Combine encontros e treinos em locais públicos.</li>
+            <li>Você pode bloquear ou denunciar qualquer pessoa pelo menu do chat, e denunciar posts e Moves pela bandeira.</li>
+        </ul>
+
+        <h2>Planos e pagamentos</h2>
+        <p>Os planos Gold e Diamond existem para demonstrar o funcionamento do sistema. O pagamento é <strong>simulado</strong>: nenhum valor é cobrado e nenhum dado de cartão completo é guardado.</p>
+
+        <h2>Assistente Lucia</h2>
+        <p>A Lucia responde dúvidas sobre o app. Ela pode errar; para qualquer assunto importante, escreva para <a href="mailto:suporte@gymmatch.app">suporte@gymmatch.app</a>.</p>
+
+        <h2>Sua conta</h2>
+        <p>Você pode pausar ou excluir a conta a qualquer momento em <strong>Perfil → Configurações</strong>. A exclusão é definitiva. Veja também a <a href="privacidade.html">Política de Privacidade</a>.</p>
+    </main>
+    <script>
+        document.getElementById("voltar").addEventListener("click", () => {
+            if (history.length > 1) history.back();
+            else window.location.href = "index.html";
+        });
+    </script>
+    <span id="fim-da-pagina" hidden></span>
+</body>
+</html>

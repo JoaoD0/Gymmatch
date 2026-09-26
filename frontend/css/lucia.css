@@ -1,0 +1,404 @@
+/* Lucia — avatar, botão flutuante, aviso no topo e tela de chat (chat.lucia.tsx / LuciaNotif / LuciaFAB). */
+
+:root {
+    --lucia-fundo-avatar: #EEEDFE;
+    --lucia-texto-avatar: #3C3489;
+    --lucia-roxo: #7F77DD;
+    --lucia-roxo-escuro: #4a3f9f;
+    --lucia-lilas: #a89fe8;
+}
+
+/* ---------- avatar ---------- */
+.lucia-avatar { position: relative; flex: none; }
+
+.lucia-avatar-circulo {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    background: var(--lucia-fundo-avatar);
+    color: var(--lucia-texto-avatar);
+    border: 2px solid var(--lucia-roxo);
+    font-weight: 700;
+    line-height: 1;
+}
+
+.lucia-avatar-estrela {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 16px;
+    height: 16px;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    background: var(--lucia-roxo);
+    color: #fff;
+}
+
+.lucia-avatar-estrela svg { width: 10px; height: 10px; fill: #fff; stroke: #fff; stroke-width: 2; }
+
+/* ---------- botão flutuante ---------- */
+.lucia-fab {
+    position: fixed;
+    bottom: 88px;
+    right: 16px;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 999px;
+    padding: 10px 16px;
+    background: var(--lucia-fundo-avatar);
+    box-shadow: 0 4px 20px rgba(60, 52, 137, 0.35);
+    color: var(--lucia-texto-avatar);
+    text-decoration: none;
+    user-select: none;
+    transition: transform 0.15s ease;
+}
+
+.lucia-fab[hidden] { display: none; }
+.lucia-fab:active { transform: scale(0.95); }
+.lucia-fab-lu { font-size: 15px; font-weight: 700; line-height: 1; }
+.lucia-fab-texto { font-size: 13px; font-weight: 600; line-height: 1; }
+
+.lucia-fab-contador {
+    min-width: 20px;
+    height: 20px;
+    padding: 0 4px;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    font-size: 10px;
+    font-weight: 700;
+}
+
+/* ---------- aviso no topo ---------- */
+.lucia-avisos {
+    position: fixed;
+    top: 12px;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 0 16px;
+    pointer-events: none;
+}
+
+@keyframes lucia-aviso-entra {
+    from { opacity: 0; transform: translateY(-16px) scale(0.95); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.lucia-aviso {
+    position: relative;
+    pointer-events: auto;
+    width: 100%;
+    max-width: 384px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 16px;
+    background: color-mix(in oklch, var(--background) 90%, transparent);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    text-align: left;
+    animation: lucia-aviso-entra 0.32s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* borda em degradê rosa → roxo, desenhada só no contorno */
+.lucia-aviso::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    padding: 1px;
+    background: linear-gradient(to bottom right, rgba(236, 72, 153, 0.3), rgba(139, 92, 246, 0.2), transparent);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.lucia-aviso .lucia-avatar { margin-top: 2px; }
+.lucia-aviso-corpo { flex: 1; min-width: 0; }
+.lucia-aviso-topo { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+.lucia-aviso-nome { font-size: 13px; font-weight: 600; line-height: 1; color: var(--foreground); }
+
+.lucia-aviso-tag {
+    font-size: 9px;
+    font-weight: 600;
+    line-height: 1;
+    padding: 2px 6px;
+    border-radius: 999px;
+    background: var(--lucia-fundo-avatar);
+    color: var(--lucia-texto-avatar);
+}
+
+.lucia-aviso-agora { margin-left: auto; font-size: 10px; color: var(--muted-foreground); }
+
+.lucia-aviso-texto {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.35;
+    color: color-mix(in oklch, var(--foreground) 80%, transparent);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.lucia-aviso-abrir { margin: 6px 0 0; font-size: 10px; font-weight: 500; color: #ec4899; }
+
+.lucia-aviso-fechar {
+    flex: none;
+    margin: -2px -4px 0 0;
+    padding: 0 4px;
+    border: none;
+    border-radius: 0;
+    background: none;
+    font-size: 18px;
+    line-height: 1;
+    font-weight: 400;
+    color: color-mix(in oklch, var(--muted-foreground) 50%, transparent);
+    cursor: pointer;
+}
+
+.lucia-aviso-fechar:hover { color: var(--muted-foreground); }
+
+/* ---------- tela de chat ---------- */
+.lucia-body { background: oklch(0.12 0.01 280); }
+
+.lucia-tela {
+    max-width: 448px;
+    height: 100dvh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background: oklch(0.12 0.01 280);
+}
+
+.lucia-cabecalho {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: linear-gradient(to bottom, oklch(0.18 0.022 280), oklch(0.14 0.014 280));
+    border-bottom: 1px solid rgba(127, 119, 221, 0.15);
+}
+
+.lucia-icone-btn {
+    width: 36px;
+    height: 36px;
+    flex: none;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: none;
+    border-radius: 999px;
+    background: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.lucia-icone-btn svg { width: 20px; height: 20px; stroke-width: 2; }
+.lucia-icone-btn:active { background: rgba(255, 255, 255, 0.08); }
+.lucia-limpar { color: rgba(255, 255, 255, 0.3); }
+.lucia-limpar svg { width: 16px; height: 16px; }
+.lucia-limpar:active { color: var(--destructive); }
+
+.lucia-cabecalho-info { flex: 1; min-width: 0; }
+.lucia-nome-linha { display: flex; align-items: center; gap: 8px; }
+.lucia-nome { margin: 0; font-family: "Space Grotesk", "DM Sans", sans-serif; font-weight: 600; line-height: 1.25; color: var(--foreground); }
+
+.lucia-tag {
+    padding: 2px 6px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 600;
+    background: rgba(127, 119, 221, 0.2);
+    color: var(--lucia-lilas);
+}
+
+.lucia-status { display: flex; align-items: center; gap: 6px; margin-top: 2px; font-size: 11px; color: #4ade80; }
+.lucia-status-ponto { width: 6px; height: 6px; border-radius: 999px; background: #4ade80; box-shadow: 0 0 6px #4ade80; }
+.lucia-status.digitando { color: var(--lucia-lilas); }
+.lucia-status.digitando .lucia-status-ponto { background: var(--lucia-lilas); box-shadow: 0 0 6px var(--lucia-roxo); }
+
+.lucia-faixa-notif {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: rgba(127, 119, 221, 0.08);
+    border-bottom: 1px solid rgba(127, 119, 221, 0.1);
+}
+
+.lucia-faixa-notif[hidden] { display: none; }
+.lucia-faixa-notif svg { width: 16px; height: 16px; flex: none; color: rgba(255, 255, 255, 0.3); stroke-width: 2; }
+.lucia-faixa-notif p { flex: 1; margin: 0; font-size: 12px; line-height: 1.35; color: rgba(255, 255, 255, 0.4); }
+
+.lucia-faixa-notif button {
+    flex: none;
+    padding: 4px 12px;
+    border: none;
+    border-radius: 999px;
+    background: rgba(127, 119, 221, 0.3);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.lucia-mensagens {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px 16px;
+    background: radial-gradient(ellipse at 50% 0%, rgba(127, 119, 221, 0.07) 0%, transparent 60%);
+}
+
+.lucia-linha { display: flex; justify-content: flex-start; }
+.lucia-linha.minha { justify-content: flex-end; }
+
+.lucia-bolha {
+    max-width: 82%;
+    padding: 12px 16px;
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+}
+
+.lucia-bolha.usuario {
+    background: linear-gradient(135deg, var(--lucia-roxo-escuro), var(--lucia-roxo));
+    color: #fff;
+    border-radius: 20px 20px 4px 20px;
+}
+
+.lucia-bolha.lucia {
+    background: rgba(127, 119, 221, 0.13);
+    color: oklch(0.93 0.01 280);
+    border-radius: 20px 20px 20px 4px;
+}
+
+.lucia-bolha a { color: inherit; font-weight: 600; text-decoration: underline; }
+
+.lucia-digitando { display: flex; align-items: center; gap: 4px; padding: 14px 16px; }
+
+.lucia-digitando span {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--lucia-roxo);
+    animation: lucia-quicar 1s infinite;
+}
+
+.lucia-digitando span:nth-child(2) { animation-delay: 150ms; }
+.lucia-digitando span:nth-child(3) { animation-delay: 300ms; }
+
+@keyframes lucia-quicar {
+    0%, 100% { transform: translateY(-25%); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
+    50% { transform: none; animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+}
+
+.lucia-atalhos {
+    flex: none;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 8px 16px 4px;
+    border-top: 1px solid rgba(127, 119, 221, 0.1);
+}
+
+.lucia-atalhos::-webkit-scrollbar { display: none; }
+.lucia-atalhos[hidden] { display: none; }
+
+.lucia-atalho {
+    flex: none;
+    white-space: nowrap;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 500;
+    background: rgba(127, 119, 221, 0.12);
+    color: var(--lucia-lilas);
+    border: 1px solid rgba(127, 119, 221, 0.2);
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+}
+
+.lucia-atalho:active { opacity: 0.7; transform: none; }
+
+.lucia-envio {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+    background: oklch(0.14 0.014 280);
+    border-top: 1px solid rgba(127, 119, 221, 0.12);
+}
+
+.lucia-campo { position: relative; flex: 1; min-width: 0; }
+
+.lucia-campo input,
+.lucia-campo input:focus {
+    width: 100%;
+    border-radius: 999px;
+    padding: 10px 48px 10px 16px;
+    font-size: 14px;
+    color: var(--foreground);
+    background: rgba(127, 119, 221, 0.08);
+    border: 1px solid rgba(127, 119, 221, 0.18);
+    box-shadow: none;
+}
+
+.lucia-campo input::placeholder { color: rgba(255, 255, 255, 0.2); }
+
+.lucia-contador {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 10px;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.lucia-contador.no-limite { color: var(--destructive); }
+
+.lucia-enviar {
+    width: 40px;
+    height: 40px;
+    flex: none;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: none;
+    border-radius: 999px;
+    color: #fff;
+    background: linear-gradient(135deg, var(--lucia-roxo-escuro), var(--lucia-roxo));
+    cursor: pointer;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.lucia-enviar svg { width: 16px; height: 16px; stroke-width: 2; }
+.lucia-enviar:disabled { opacity: 0.3; cursor: default; }
+.lucia-enviar:active:not(:disabled) { transform: scale(0.9); }

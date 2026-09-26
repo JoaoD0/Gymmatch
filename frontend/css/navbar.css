@@ -1,0 +1,139 @@
+#bottom-nav {
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 40;
+    display: flex;
+    justify-content: center;
+    padding-bottom: max(env(safe-area-inset-bottom), 20px);
+    pointer-events: none;
+}
+
+.nav-pill {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-radius: 28px;
+    background: var(--card);
+    border: 1px solid color-mix(in oklch, var(--border) 40%, transparent);
+    padding: 4px 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+    pointer-events: auto;
+}
+
+.nav-item {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    height: 56px;
+    width: 64px;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+/* ---------- holofote: barra + cone ---------- */
+@keyframes bar-pop {
+    0%   { opacity: 0; transform: scaleX(0.2); }
+    60%  { opacity: 1; transform: scaleX(1.15); }
+    100% { opacity: 1; transform: scaleX(1); }
+}
+
+@keyframes beam-on {
+    0%   { opacity: 0; transform: scaleY(0); }
+    40%  { opacity: 0.6; }
+    100% { opacity: 1; transform: scaleY(1); }
+}
+
+.bar-indicator {
+    position: absolute;
+    top: 0;
+    height: 3px;
+    width: 32px;
+    border-radius: 999px;
+    background: var(--primary);
+    box-shadow: 0 0 10px 2px color-mix(in oklch, var(--primary) 70%, transparent);
+    pointer-events: none;
+    z-index: 20;
+    transform-origin: center;
+    animation: bar-pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.beam-cone {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 64px;
+    pointer-events: none;
+    background: linear-gradient(
+        to bottom,
+        color-mix(in oklch, var(--primary) 45%, transparent) 0%,
+        color-mix(in oklch, var(--primary) 10%, transparent) 50%,
+        transparent 100%
+    );
+    clip-path: polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%);
+    transform-origin: top center;
+    animation: beam-on 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ---------- ícones e foto de perfil ---------- */
+.nav-icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+    color: var(--muted-foreground);
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.nav-icon svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    stroke-width: 1.5;
+    transition: stroke-width 0.3s ease;
+}
+
+.nav-icon.active {
+    width: 22px;
+    height: 22px;
+    color: var(--primary);
+    opacity: 1;
+    filter: drop-shadow(0 0 6px var(--primary));
+}
+
+.nav-icon.active svg {
+    stroke-width: 2;
+}
+
+.nav-photo {
+    width: 24px;
+    height: 24px;
+    border-radius: 999px;
+    object-fit: cover;
+    opacity: 0.5;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+}
+
+.nav-photo.active {
+    opacity: 1;
+    border: 2px solid var(--primary);
+}
+
+/* ---------- ponto de pendências (convites de treino) ---------- */
+.nav-dot {
+    position: absolute;
+    top: 15px;
+    left: 37px;
+    width: 8px;
+    height: 8px;
+    box-sizing: content-box;
+    border-radius: 999px;
+    background: var(--primary);
+    border: 2px solid var(--card);
+    pointer-events: none;
+}
+
+.nav-dot[hidden] { display: none; }

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>GymMatch — Matches</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@600;700;800&family=Bebas+Neue&family=Montserrat:wght@700;900&family=Oswald:wght@700&family=Permanent+Marker&family=Playfair+Display:ital,wght@1,700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+    <link rel="stylesheet" href="css/matches.css" />
+    <link rel="stylesheet" href="css/upgrade-modal.css" />
+    <link rel="stylesheet" href="css/match-overlay.css" />
+    <link rel="stylesheet" href="css/moves.css" />
+    <link rel="stylesheet" href="css/moves-creator.css" />
+    <link rel="stylesheet" href="css/lucia.css" />
+    <!-- pinta a página nova só depois dos scripts do fim do body (a barra precisa já estar desenhada para a transição) -->
+    <link rel="expect" href="#fim-da-pagina" blocking="render" />
+    <script src="js/transicoes.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="matches-titulo">Matches</h1>
+
+        <div id="moves-row"></div>
+        <div id="curtiram-secao"></div>
+        <div id="lista"></div>
+        <p class="error" id="erro"></p>
+    </div>
+
+    <nav id="bottom-nav"></nav>
+
+    <script src="js/api.js"></script>
+    <script src="js/icons.js"></script>
+    <script src="js/notificacoes.js"></script>
+    <script src="js/lucia.js"></script>
+    <script src="js/sheet.js"></script>
+    <script src="js/upgrade-modal.js"></script>
+    <script src="js/match-overlay.js"></script>
+    <script src="js/moves.js"></script>
+    <script src="js/moves-creator.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/matches.js"></script>
+    <span id="fim-da-pagina" hidden></span>
+</body>
+</html>

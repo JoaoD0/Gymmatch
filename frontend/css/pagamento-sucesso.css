@@ -1,0 +1,67 @@
+.sucesso-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+}
+
+.sucesso-icone-wrap {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    margin-bottom: 24px;
+}
+
+.sucesso-circulo {
+    width: 96px;
+    height: 96px;
+    border-radius: 999px;
+    background: color-mix(in oklch, var(--success) 12%, transparent);
+    display: grid;
+    place-items: center;
+}
+
+.sucesso-circulo svg { width: 48px; height: 48px; color: var(--success); }
+
+.sucesso-mini {
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    border: 3px solid var(--background);
+}
+
+.sucesso-mini svg { width: 18px; height: 18px; }
+
+.sucesso-titulo { font-size: 26px; margin: 0 0 10px; }
+
+.sucesso-texto {
+    color: var(--muted-foreground);
+    font-size: 14.5px;
+    line-height: 1.5;
+    max-width: 320px;
+    margin: 0 0 32px;
+}
+
+.sucesso-btn {
+    width: 100%;
+    max-width: 320px;
+    margin-top: 0;
+}
+
+.sucesso-link {
+    display: block;
+    margin-top: 14px;
+    color: var(--muted-foreground);
+    font-size: 13.5px;
+    text-decoration: none;
+}
+
+.sucesso-link:hover { color: var(--foreground); }

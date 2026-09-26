@@ -1,0 +1,224 @@
+/* Folha de Configurações — valores do me.tsx original (classes Tailwind convertidas). */
+
+.sheet-overlay.cfg-folha { background: rgba(0, 0, 0, 0.7); }
+
+.cfg-folha .sheet-panel {
+    max-height: 90dvh;
+    overflow-y: auto;
+    padding: 0 0 40px;
+    border-radius: 28px 28px 0 0;
+    background: linear-gradient(to bottom, oklch(0.17 0.012 280), oklch(0.13 0.01 280));
+    border: 1px solid color-mix(in oklch, var(--border) 40%, transparent);
+    border-bottom: none;
+}
+
+.cfg-folha .sheet-handle {
+    width: 40px;
+    height: 4px;
+    margin: 12px auto 16px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.cfg-folha svg { stroke-width: 2; }
+
+.cfg-titulo-folha {
+    margin: 0;
+    padding: 0 20px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted-foreground);
+}
+
+.cfg-secao {
+    margin: 0;
+    padding: 4px 20px 6px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.cfg-divisoria {
+    height: 1px;
+    margin: 8px 20px;
+    background: color-mix(in oklch, var(--border) 20%, transparent);
+}
+
+/* ---------- linhas ---------- */
+.cfg-linha {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 14px 20px;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    background: none;
+    text-align: left;
+    text-decoration: none;
+    text-transform: none;
+    letter-spacing: normal;
+    font: inherit;
+    color: var(--foreground);
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.cfg-linha:active { background: rgba(255, 255, 255, 0.05); transform: none; }
+.cfg-linha.estatica { padding-top: 12px; padding-bottom: 12px; cursor: default; }
+.cfg-linha.estatica:active { background: none; }
+.cfg-linha.perigo:active { background: color-mix(in oklch, var(--destructive) 8%, transparent); }
+.cfg-linha:disabled { opacity: 0.5; cursor: default; }
+.cfg-linha:disabled:active { background: none; }
+
+.cfg-icone {
+    width: 20px;
+    height: 20px;
+    flex: none;
+    display: grid;
+    place-items: center;
+    color: var(--muted-foreground);
+}
+
+.cfg-icone svg { width: 20px; height: 20px; }
+.cfg-icone.ambar { color: #fbbf24; }
+.cfg-icone.verde { color: var(--success); }
+.cfg-icone.vermelho { color: var(--destructive); }
+
+.cfg-textos { flex: 1; min-width: 0; }
+.cfg-rotulo { margin: 0; font-size: 15px; font-weight: 500; line-height: 1.35; color: var(--foreground); }
+.cfg-sub { margin: 2px 0 0; font-size: 12px; line-height: 1.35; color: rgba(255, 255, 255, 0.3); }
+.cfg-rotulo.vermelho { color: var(--destructive); }
+.cfg-sub.vermelho { color: color-mix(in oklch, var(--destructive) 50%, transparent); }
+
+.cfg-seta { width: 16px; height: 16px; flex: none; color: rgba(255, 255, 255, 0.2); }
+.cfg-seta svg { width: 16px; height: 16px; display: block; }
+
+.cfg-email-rotulo { margin: 0; font-size: 12px; color: rgba(255, 255, 255, 0.3); }
+.cfg-email { margin: 0; font-size: 14px; font-weight: 500; color: var(--foreground); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.cfg-pilula-plano { flex: none; padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+.cfg-pilula-plano.diamond { background: rgba(14, 165, 233, 0.2); color: #38bdf8; }
+.cfg-pilula-plano.gold { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+.cfg-pilula-plano.free { background: rgba(255, 255, 255, 0.08); color: rgba(255, 255, 255, 0.35); }
+
+.cfg-ativo { flex: none; font-size: 11px; font-weight: 700; color: var(--success); }
+
+.cfg-lucia-mini {
+    width: 36px;
+    height: 36px;
+    flex: none;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    background: #EEEDFE;
+    color: #3C3489;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* ---------- descoberta ---------- */
+.cfg-descoberta { display: flex; flex-direction: column; gap: 20px; padding: 12px 20px; }
+.cfg-desc-cabeca { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.cfg-desc-titulo { margin: 0; font-size: 14px; font-weight: 600; color: var(--foreground); }
+.cfg-desc-valor { font-size: 14px; font-weight: 700; color: var(--primary); }
+.cfg-desc-extremos { display: flex; justify-content: space-between; margin-top: 6px; font-size: 11px; color: rgba(255, 255, 255, 0.25); }
+
+.cfg-em-breve { opacity: 0.4; pointer-events: none; user-select: none; }
+.cfg-em-breve-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: color-mix(in oklch, var(--primary) 80%, transparent); }
+
+.cfg-slider { position: relative; height: 24px; display: flex; align-items: center; }
+
+.cfg-slider-trilho { position: absolute; left: 0; right: 0; height: 6px; border-radius: 999px; background: var(--border); }
+.cfg-slider-trilho.estatico { position: static; }
+
+.cfg-slider-faixa { position: absolute; height: 6px; border-radius: 999px; background: var(--primary); pointer-events: none; }
+
+/* dois ranges sobrepostos: a trilha nativa some e só os cursores recebem toque */
+.cfg-slider input[type="range"] {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 24px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
+    pointer-events: none;
+    outline: none;
+}
+
+.cfg-slider input[type="range"]::-webkit-slider-runnable-track { height: 24px; background: transparent; }
+.cfg-slider input[type="range"]::-moz-range-track { height: 24px; background: transparent; }
+
+.cfg-slider input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    border: none;
+    border-radius: 999px;
+    background: var(--primary);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.cfg-slider input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 999px;
+    background: var(--primary);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.cfg-slider input[type="range"]:focus-visible::-webkit-slider-thumb { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.cfg-salvar {
+    width: 100%;
+    margin: 0;
+    padding: 12px 0;
+    border: none;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary-foreground);
+    background: var(--gradient-primary);
+    box-shadow: var(--shadow-glow);
+    cursor: pointer;
+}
+
+.cfg-salvar[hidden] { display: none; }
+
+/* ---------- rodapé ---------- */
+.cfg-cancelar {
+    display: block;
+    width: calc(100% - 32px);
+    margin: 12px 16px 0;
+    padding: 14px 0;
+    border-radius: 12px;
+    border: 1px solid color-mix(in oklch, var(--border) 20%, transparent);
+    background: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: color-mix(in oklch, var(--muted-foreground) 50%, transparent);
+    cursor: pointer;
+}
+
+.cfg-links { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 12px 0 4px; font-size: 11px; }
+.cfg-links a { color: rgba(255, 255, 255, 0.2); text-decoration: none; }
+.cfg-links a:hover { color: rgba(255, 255, 255, 0.4); }
+.cfg-links span { color: rgba(255, 255, 255, 0.1); }
+.cfg-versao { margin: 0; padding-bottom: 4px; text-align: center; font-size: 10px; color: rgba(255, 255, 255, 0.12); }

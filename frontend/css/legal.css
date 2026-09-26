@@ -1,0 +1,32 @@
+.legal { max-width: 640px; margin: 0 auto; padding: 24px 18px 60px; }
+
+.legal-voltar {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 18px;
+    padding: 8px 12px 8px 8px;
+    border: none;
+    border-radius: 999px;
+    background: var(--secondary);
+    color: var(--foreground);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.legal-voltar svg { width: 18px; height: 18px; stroke-width: 2; }
+.legal-data { color: var(--muted-foreground); font-size: 13px; margin: 0 0 24px; }
+.legal h2 { font-family: "Space Grotesk", sans-serif; font-size: 17px; margin: 26px 0 8px; }
+.legal p, .legal li { font-size: 14.5px; line-height: 1.65; color: color-mix(in oklch, var(--foreground) 85%, transparent); }
+.legal ul { padding-left: 20px; margin: 8px 0; }
+.legal a { color: var(--primary); }
+
+.legal-aviso {
+    padding: 14px 16px;
+    border-radius: 14px;
+    background: color-mix(in oklch, var(--primary) 8%, transparent);
+    border: 1px solid color-mix(in oklch, var(--primary) 25%, transparent);
+    font-size: 14px;
+    line-height: 1.55;
+}

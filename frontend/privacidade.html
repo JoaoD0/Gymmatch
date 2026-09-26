@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>GymMatch — Privacidade</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/legal.css" />
+    <!-- pinta a página nova só depois dos scripts do fim do body (a barra precisa já estar desenhada para a transição) -->
+    <link rel="expect" href="#fim-da-pagina" blocking="render" />
+    <script src="js/transicoes.js"></script>
+</head>
+<body>
+    <main class="legal">
+        <button type="button" class="legal-voltar" id="voltar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            Voltar
+        </button>
+        <h1>Política de Privacidade</h1>
+        <p class="legal-data">GymMatch · versão 1.0</p>
+
+        <p class="legal-aviso">O GymMatch é um <strong>projeto acadêmico</strong>. Os dados ficam no banco de dados de quem está rodando o projeto e servem só para o app funcionar — não são vendidos nem usados para publicidade.</p>
+
+        <h2>O que o app guarda</h2>
+        <ul>
+            <li><strong>Cadastro:</strong> nome, e-mail, senha (guardada só como hash, nunca em texto) e a academia escolhida.</li>
+            <li><strong>Perfil:</strong> idade, bio, objetivo, nível, modalidades, horários de treino, gênero, orientação, preferências, telefone e CPF (se informados) e recordes.</li>
+            <li><strong>Fotos:</strong> foto de perfil, galeria, fotos dos Moves e do Feed.</li>
+            <li><strong>Interações:</strong> curtidas, matches, mensagens do chat, bloqueios e denúncias.</li>
+            <li><strong>Treino:</strong> plano da semana, exercícios, check-ins, convites e grupos.</li>
+            <li><strong>Plano:</strong> qual plano você escolheu e os 4 últimos dígitos e a bandeira informados no pagamento simulado.</li>
+        </ul>
+
+        <h2>O que fica só no seu navegador</h2>
+        <p>A conversa com a Lucia, a faixa etária do Descobrir e algumas preferências (como o botão flutuante da Lucia e as notificações) ficam no armazenamento local do navegador.</p>
+
+        <h2>Assistente Lucia</h2>
+        <p>O que você escreve para a Lucia é enviado ao servidor do app. Se o servidor estiver configurado com uma chave de IA, a mensagem e as últimas mensagens da conversa são enviadas também a esse serviço de IA para gerar a resposta. Não escreva dados pessoais para ela.</p>
+
+        <h2>Quem vê seus dados</h2>
+        <p>Pessoas da sua academia veem seu perfil público no Descobrir. Você pode ocultar objetivo, orientação e horários, pausar a conta ou bloquear alguém a qualquer momento.</p>
+
+        <h2>Como excluir sua conta</h2>
+        <p>Vá em <strong>Perfil → Configurações → Excluir conta</strong>. Seu cadastro, perfil, fotos, matches e mensagens são apagados permanentemente. Dúvidas: <a href="mailto:suporte@gymmatch.app">suporte@gymmatch.app</a>.</p>
+    </main>
+    <script>
+        document.getElementById("voltar").addEventListener("click", () => {
+            if (history.length > 1) history.back();
+            else window.location.href = "index.html";
+        });
+    </script>
+    <span id="fim-da-pagina" hidden></span>
+</body>
+</html>

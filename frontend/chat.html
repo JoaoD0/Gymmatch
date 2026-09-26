@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>GymMatch — Chat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/chat.css" />
+    <!-- pinta a página nova só depois dos scripts do fim do body (a barra precisa já estar desenhada para a transição) -->
+    <link rel="expect" href="#fim-da-pagina" blocking="render" />
+    <script src="js/transicoes.js"></script>
+</head>
+<body>
+    <div class="chat-page">
+        <div class="chat-header" id="chat-header"><p class="subtitle" style="margin:0">Carregando...</p></div>
+        <div class="chat-mensagens" id="chat-mensagens"></div>
+        <div class="chat-barra" id="chat-barra" hidden>
+            <input type="text" id="texto" class="chat-input" maxlength="1000" placeholder="Mensagem..." autocomplete="off" />
+            <button class="chat-btn-enviar" id="btn-enviar" aria-label="Enviar"></button>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/icons.js"></script>
+    <script src="js/notificacoes.js"></script>
+    <script src="js/sheet.js"></script>
+    <script src="js/chat.js"></script>
+    <span id="fim-da-pagina" hidden></span>
+</body>
+</html>

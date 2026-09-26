@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>GymMatch — Complete seu perfil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/onboarding.css" />
+    <!-- pinta a página nova só depois dos scripts do fim do body (a barra precisa já estar desenhada para a transição) -->
+    <link rel="expect" href="#fim-da-pagina" blocking="render" />
+    <script src="js/transicoes.js"></script>
+</head>
+<body>
+    <div class="container onboarding">
+        <div class="progress-bar">
+            <div class="progress-seg" data-step="1"></div>
+            <div class="progress-seg" data-step="2"></div>
+            <div class="progress-seg" data-step="3"></div>
+            <div class="progress-seg" data-step="4"></div>
+        </div>
+
+        <!-- ETAPA 1 -->
+        <section class="onb-step" id="step-1">
+            <p class="section-label">Etapa 1 de 4</p>
+            <h1>Sobre você</h1>
+
+            <label>Nome completo</label>
+            <input type="text" id="ob-nome" />
+
+            <label>Telefone</label>
+            <input type="tel" id="ob-telefone" placeholder="(11) 91234-5678" />
+
+            <label>Idade (18+)</label>
+            <input type="number" id="ob-idade" min="18" max="100" value="18" />
+
+            <label>CPF</label>
+            <input type="text" id="ob-cpf" placeholder="000.000.000-00" />
+
+            <label>Gênero</label>
+            <div class="pill-group" id="ob-genero" data-single="true">
+                <button type="button" class="pill" data-value="masculino">Masculino</button>
+                <button type="button" class="pill" data-value="feminino">Feminino</button>
+                <button type="button" class="pill" data-value="nao_binario">Não-binário</button>
+                <button type="button" class="pill" data-value="outro">Outro</button>
+            </div>
+
+            <label>Orientação sexual (opcional)</label>
+            <input type="text" id="ob-orientacao" />
+
+            <div class="onb-actions">
+                <button type="button" class="btn-primary" id="btn-step1-next">Avançar</button>
+            </div>
+        </section>
+
+        <!-- ETAPA 2 -->
+        <section class="onb-step" id="step-2" hidden>
+            <p class="section-label">Etapa 2 de 4</p>
+            <h1>O que você está procurando?</h1>
+
+            <label>Objetivo principal</label>
+            <div class="pill-group" id="ob-procurando" data-single="true">
+                <button type="button" class="pill" data-value="amizade">Amizade</button>
+                <button type="button" class="pill" data-value="parceiro_treino">Parceiro de treino</button>
+                <button type="button" class="pill" data-value="romance">Romance</button>
+            </div>
+
+            <label>Também aberto a</label>
+            <div class="pill-group" id="ob-aberto-a">
+                <button type="button" class="pill" data-value="amizade">Amizade</button>
+                <button type="button" class="pill" data-value="parceiro_treino">Parceiro de treino</button>
+                <button type="button" class="pill" data-value="romance">Romance</button>
+            </div>
+
+            <label>Me mostre (para romance)</label>
+            <div class="pill-group" id="ob-mostrar-para">
+                <button type="button" class="pill" data-value="masculino">Masculino</button>
+                <button type="button" class="pill" data-value="feminino">Feminino</button>
+                <button type="button" class="pill" data-value="nao_binario">Não-binário</button>
+                <button type="button" class="pill" data-value="outro">Outro</button>
+            </div>
+
+            <div class="onb-actions">
+                <button type="button" class="btn-secondary" id="btn-step2-back">Voltar</button>
+                <button type="button" class="btn-primary" id="btn-step2-next">Avançar</button>
+            </div>
+        </section>
+
+        <!-- ETAPA 3 -->
+        <section class="onb-step" id="step-3" hidden>
+            <p class="section-label">Etapa 3 de 4</p>
+            <h1>Seu treino</h1>
+
+            <label>Nível</label>
+            <div class="pill-group" id="ob-nivel" data-single="true">
+                <button type="button" class="pill" data-value="iniciante">Iniciante</button>
+                <button type="button" class="pill" data-value="intermediario">Intermediário</button>
+                <button type="button" class="pill" data-value="avancado">Avançado</button>
+            </div>
+
+            <label>Quando você treina</label>
+            <div class="pill-group" id="ob-quando-treina">
+                <button type="button" class="pill" data-value="manha">Manhã</button>
+                <button type="button" class="pill" data-value="tarde">Tarde</button>
+                <button type="button" class="pill" data-value="noite">Noite</button>
+            </div>
+
+            <label>Modalidades</label>
+            <div class="pill-group" id="ob-modalidades">
+                <button type="button" class="pill" data-value="Musculação">Musculação</button>
+                <button type="button" class="pill" data-value="Crossfit">Crossfit</button>
+                <button type="button" class="pill" data-value="Corrida">Corrida</button>
+                <button type="button" class="pill" data-value="Calistenia">Calistenia</button>
+                <button type="button" class="pill" data-value="Yoga">Yoga</button>
+                <button type="button" class="pill" data-value="Boxe">Boxe</button>
+                <button type="button" class="pill" data-value="HIIT">HIIT</button>
+                <button type="button" class="pill" data-value="Natação">Natação</button>
+            </div>
+
+            <label>Divisão de treino (ex: Push/Pull/Legs)</label>
+            <input type="text" id="ob-divisao" />
+
+            <label>Interesses (separados por vírgula)</label>
+            <input type="text" id="ob-interesses" />
+
+            <div class="onb-actions">
+                <button type="button" class="btn-secondary" id="btn-step3-back">Voltar</button>
+                <button type="button" class="btn-primary" id="btn-step3-next">Avançar</button>
+            </div>
+        </section>
+
+        <!-- ETAPA 4 -->
+        <section class="onb-step" id="step-4" hidden>
+            <p class="section-label">Etapa 4 de 4</p>
+            <h1>Sua academia e foto</h1>
+
+            <label>Academia</label>
+            <select id="ob-academia">
+                <option value="">Selecione a academia...</option>
+            </select>
+
+            <label>Bio (opcional)</label>
+            <textarea id="ob-bio" maxlength="500"></textarea>
+
+            <label>Foto de perfil</label>
+            <input type="file" id="ob-foto" accept="image/png,image/jpeg,image/webp" />
+
+            <label class="onb-checkbox">
+                <input type="checkbox" id="ob-termos" />
+                <span>Tenho 18 anos ou mais e aceito os <a href="termos.html" target="_blank" rel="noopener">Termos de Uso</a> e a
+                    <a href="privacidade.html" target="_blank" rel="noopener">Política de Privacidade</a> (LGPD).</span>
+            </label>
+
+            <p class="error" id="erro"></p>
+
+            <div class="onb-actions">
+                <button type="button" class="btn-secondary" id="btn-step4-back">Voltar</button>
+                <button type="button" class="btn-primary" id="btn-concluir">Concluir</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/onboarding.js"></script>
+    <span id="fim-da-pagina" hidden></span>
+</body>
+</html>

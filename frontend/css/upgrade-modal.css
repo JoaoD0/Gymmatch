@@ -1,0 +1,106 @@
+.upg-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.upg-subtitulo {
+    color: var(--muted-foreground);
+    font-size: 13.5px;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.upg-fechar {
+    width: 32px;
+    height: 32px;
+    flex: none;
+    border-radius: 999px;
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--foreground);
+    display: grid;
+    place-items: center;
+    padding: 0;
+}
+
+.upg-fechar svg { width: 16px; height: 16px; }
+
+.upg-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.upg-card {
+    border: 1.5px solid var(--border);
+    border-radius: 18px;
+    padding: 16px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.upg-pill {
+    align-self: flex-start;
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 999px;
+}
+
+.upg-preco {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.upg-preco span {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted-foreground);
+    margin-left: 2px;
+}
+
+.upg-beneficios {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+}
+
+.upg-beneficios li {
+    font-size: 11px;
+    color: var(--muted-foreground);
+    line-height: 1.4;
+}
+
+.upg-card .btn-assinar,
+.upg-card button {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 0.875rem;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-top: 0;
+    border: none;
+}
+
+.upg-continuar {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--muted-foreground);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: underline;
+    padding: 6px;
+}

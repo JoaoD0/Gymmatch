@@ -1,0 +1,271 @@
+.matches-titulo {
+    font-size: 30px;
+    font-weight: 700;
+    margin: 4px 0 24px;
+}
+
+/* ---------- Quem curtiu você ---------- */
+.curtiram-secao { margin-bottom: 28px; }
+
+.curtiram-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.curtiram-rotulo {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted-foreground);
+}
+
+.curtiram-link {
+    color: var(--primary);
+    font-size: 12.5px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.curtiram-link:hover { text-decoration: underline; }
+
+.curtiram-bloqueado {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border: 1px solid color-mix(in oklch, var(--primary) 20%, transparent);
+    background: color-mix(in oklch, var(--primary) 5%, transparent);
+    border-radius: 18px;
+    padding: 16px;
+    cursor: pointer;
+}
+
+.curtiram-bloqueado-icone {
+    width: 48px;
+    height: 48px;
+    flex: none;
+    border-radius: 999px;
+    background: color-mix(in oklch, var(--primary) 15%, transparent);
+    color: var(--primary);
+    display: grid;
+    place-items: center;
+}
+
+.curtiram-bloqueado-icone svg { width: 22px; height: 22px; }
+
+.curtiram-bloqueado-texto { flex: 1; }
+.curtiram-bloqueado-texto strong { display: block; font-size: 14px; margin-bottom: 2px; }
+.curtiram-bloqueado-texto span { font-size: 12.5px; color: var(--muted-foreground); }
+
+.curtiram-bloqueado > svg { width: 20px; height: 20px; color: var(--primary); flex: none; }
+
+.curtiram-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.curtiram-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid var(--border);
+    background: color-mix(in oklch, var(--card) 60%, transparent);
+    border-radius: 16px;
+    padding: 10px 12px;
+    transition: opacity 0.2s ease;
+}
+
+.curtiram-item.saindo { opacity: 0; }
+
+.curtiram-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 999px;
+    flex: none;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--secondary);
+    display: grid;
+    place-items: center;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    color: #fff;
+}
+
+.curtiram-avatar.sem-foto { background-image: var(--gradient-primary); }
+
+.curtiram-item-info { flex: 1; min-width: 0; }
+.curtiram-item-info strong { display: block; font-size: 14px; }
+.curtiram-item-info span { font-size: 12px; color: var(--muted-foreground); }
+
+.curtiram-item-acoes { display: flex; gap: 8px; flex: none; }
+
+.curtiram-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: none;
+}
+
+.curtiram-btn svg { width: 16px; height: 16px; }
+
+.curtiram-btn-recusar {
+    background: none;
+    border: 1.5px solid var(--border);
+    color: var(--muted-foreground);
+}
+
+.curtiram-btn-recusar:hover { border-color: var(--destructive); color: oklch(0.75 0.18 25); }
+
+.curtiram-btn-aceitar {
+    background-image: var(--gradient-primary);
+    color: var(--primary-foreground);
+    box-shadow: var(--shadow-glow);
+}
+
+.curtiram-btn:disabled { opacity: 0.5; cursor: default; }
+
+.curtiram-mais-bloqueados {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    border: 1.5px dashed var(--border);
+    border-radius: 14px;
+    padding: 12px;
+    color: var(--muted-foreground);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 8px;
+}
+
+.curtiram-mais-bloqueados svg { width: 15px; height: 15px; }
+
+/* ---------- lista de matches ---------- */
+.matches-lista { border-top: 1px solid var(--border); }
+
+.match-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+}
+
+.match-item-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 999px;
+    flex: none;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--secondary);
+    display: grid;
+    place-items: center;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.match-item-avatar.sem-foto { background-image: var(--gradient-primary); }
+
+.match-item-corpo { flex: 1; min-width: 0; }
+
+.match-item-linha1 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.match-item-nome {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.match-item-novo {
+    flex: none;
+    background-image: var(--gradient-primary);
+    color: var(--primary-foreground);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 2px 9px;
+    border-radius: 999px;
+}
+
+.match-item-linha2 {
+    font-size: 12px;
+    color: var(--muted-foreground);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 2px;
+}
+
+.match-item-linha2 svg { width: 12px; height: 12px; flex: none; color: color-mix(in oklch, var(--primary) 80%, transparent); }
+
+.match-item-linha2.modalidades { color: color-mix(in oklch, var(--primary) 80%, transparent); }
+.match-item-linha2.modalidades .cinza { color: var(--muted-foreground); }
+
+/* ---------- esqueleto ---------- */
+.matches-skeleton-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.skel-block {
+    background: var(--muted);
+    position: relative;
+    overflow: hidden;
+}
+
+.skel-block::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+    animation: matches-shimmer 1.4s infinite;
+}
+
+@keyframes matches-shimmer {
+    from { transform: translateX(-100%); }
+    to   { transform: translateX(100%); }
+}
+
+/* ---------- vazio ---------- */
+.matches-vazio {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.matches-vazio h2 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 18px;
+    margin: 0 0 6px;
+}
+
+.matches-vazio p { color: var(--muted-foreground); font-size: 14px; margin: 0 0 16px; }
+.matches-vazio a { color: var(--primary); font-weight: 600; text-decoration: none; }
+.matches-vazio a:hover { text-decoration: underline; }

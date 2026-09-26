@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>GymMatch — Entrar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- pinta a página nova só depois dos scripts do fim do body (a barra precisa já estar desenhada para a transição) -->
+    <link rel="expect" href="#fim-da-pagina" blocking="render" />
+    <script src="js/transicoes.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>GymMatch</h1>
+        <p class="subtitle">Trabalho de POO — entre ou crie sua conta</p>
+
+        <div class="card">
+            <div id="tabs" style="display:flex; gap:8px; margin-bottom: 8px;">
+                <button id="tab-login" class="btn-secondary btn-small">Entrar</button>
+                <button id="tab-cadastro" class="btn-secondary btn-small">Cadastrar</button>
+            </div>
+
+            <form id="form-login">
+                <label>Email</label>
+                <input type="email" id="login-email" required />
+                <label>Senha</label>
+                <input type="password" id="login-senha" required />
+                <button type="submit" class="btn-primary">Entrar</button>
+            </form>
+
+            <form id="form-cadastro" style="display:none">
+                <label>Nome</label>
+                <input type="text" id="cad-nome" required />
+                <label>Email</label>
+                <input type="email" id="cad-email" required />
+                <label>Senha (mín. 6 caracteres)</label>
+                <input type="password" id="cad-senha" minlength="6" required />
+                <button type="submit" class="btn-primary">Criar conta</button>
+            </form>
+
+            <p class="error" id="erro"></p>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <span id="fim-da-pagina" hidden></span>
+</body>
+</html>

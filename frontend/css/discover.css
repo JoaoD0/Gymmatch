@@ -1,0 +1,394 @@
+.discover-page {
+    padding-bottom: 110px;
+}
+
+.discover-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.discover-header h1 { margin: 0; }
+
+.icon-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 999px;
+    background: var(--secondary);
+    border: 1px solid var(--border);
+    color: var(--muted-foreground);
+    display: grid;
+    place-items: center;
+    padding: 0;
+}
+
+.icon-btn:hover { color: var(--foreground); border-color: var(--ring); }
+
+/* ---------- card ---------- */
+.swipe-card {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4.3;
+    border-radius: 1.75rem;
+    overflow: hidden;
+    background: var(--gradient-card);
+    border: 1px solid var(--border);
+}
+
+/* ---------- pilha e gesto de arrastar ---------- */
+:root {
+    --swipe-curtir: oklch(0.76 0.19 150);
+    --swipe-curtir-tinta: oklch(0.2 0.06 150);
+    --swipe-passar: oklch(0.64 0.22 25);
+    --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* o card que sai da tela não pode criar rolagem lateral */
+body:has(.discover-page) { overflow-x: clip; }
+
+.deck-pilha { position: relative; }
+
+.card-topo {
+    z-index: 2;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: grab;
+    box-shadow: 0 10px 30px -18px rgba(0, 0, 0, 0.6);
+}
+
+/* segurando: o card "levanta" (escala vem do JS, a sombra daqui) */
+.card-topo.arrastando {
+    cursor: grabbing;
+    will-change: transform;
+    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+/* "backwards": depois de terminar, a animação não pode continuar segurando o transform do gesto */
+.card-topo.entrando { animation: card-pop 0.32s var(--ease-out-quint) backwards; }
+
+.card-fundo {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.card-proximo { z-index: 1; }
+.card-terceiro { z-index: 0; }
+
+/* brilho que entra pela borda do lado para onde o card vai */
+.card-brilho {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.card-brilho.curtir {
+    background: linear-gradient(to left,
+        color-mix(in oklch, var(--swipe-curtir) 55%, transparent),
+        color-mix(in oklch, var(--swipe-curtir) 14%, transparent) 42%,
+        transparent 72%);
+}
+
+.card-brilho.passar {
+    background: linear-gradient(to right,
+        color-mix(in oklch, var(--swipe-passar) 55%, transparent),
+        color-mix(in oklch, var(--swipe-passar) 14%, transparent) 42%,
+        transparent 72%);
+}
+
+/* selo de decisão: sólido, com ícone, preso ao card */
+.card-decisao {
+    position: absolute;
+    top: 70px;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px 10px 12px;
+    border-radius: 14px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.card-decisao svg { width: 20px; height: 20px; stroke-width: 2.6; }
+
+.card-decisao.curtir {
+    left: 18px;
+    transform-origin: left center;
+    background: var(--swipe-curtir);
+    color: var(--swipe-curtir-tinta);
+    box-shadow: 0 12px 30px -8px color-mix(in oklch, var(--swipe-curtir) 70%, transparent);
+}
+
+.card-decisao.curtir svg { fill: currentColor; }
+
+.card-decisao.passar {
+    right: 18px;
+    transform-origin: right center;
+    background: var(--swipe-passar);
+    color: #fff;
+    box-shadow: 0 12px 30px -8px color-mix(in oklch, var(--swipe-passar) 70%, transparent);
+}
+
+/* ---------- botões acompanhando o gesto ---------- */
+.swipe-actions .round-btn {
+    transition: transform 0.18s var(--ease-out-quint), opacity 0.18s ease, box-shadow 0.22s ease,
+        background-color 0.22s ease, border-color 0.22s ease, color 0.22s ease;
+}
+
+.round-btn-primary.armado {
+    box-shadow: 0 0 0 6px color-mix(in oklch, var(--primary) 22%, transparent),
+        0 14px 34px -6px color-mix(in oklch, var(--primary) 75%, transparent);
+}
+
+.round-btn-secondary.armado {
+    background: var(--swipe-passar);
+    border-color: transparent;
+    color: #fff;
+    box-shadow: 0 0 0 6px color-mix(in oklch, var(--swipe-passar) 22%, transparent),
+        0 14px 34px -6px color-mix(in oklch, var(--swipe-passar) 75%, transparent);
+}
+
+@keyframes botao-pulso {
+    35%  { transform: scale(0.88); }
+    100% { transform: scale(1); }
+}
+
+.round-btn.pulsando { animation: botao-pulso 0.26s var(--ease-out-quint); }
+
+@media (prefers-reduced-motion: reduce) {
+    .card-topo.entrando,
+    .round-btn.pulsando { animation: none; }
+}
+
+@keyframes card-pop {
+    from { opacity: 0; transform: translateY(10px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+
+.card-photo {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--secondary);
+}
+
+.card-photo.no-photo {
+    background-image: var(--gradient-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-photo.no-photo .initials {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 96px;
+    font-weight: 700;
+    color: var(--border);
+}
+
+.card-top {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    right: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.card-selos {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+    flex: 1;
+}
+
+.card-selo-academia {
+    /* o verde translúcido vai sobre o mesmo vidro escuro do selo de intenção, para ler bem em fotos claras */
+    background: linear-gradient(rgba(34, 197, 94, 0.15), rgba(34, 197, 94, 0.15)), oklch(0.15 0.02 280 / 78%);
+    border: 1px solid rgba(34, 197, 94, 0.25);
+    backdrop-filter: blur(6px);
+    color: #4ade80;
+    border-radius: 999px;
+    padding: 7px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.card-badge {
+    background: oklch(0.15 0.02 280 / 78%);
+    backdrop-filter: blur(6px);
+    border: 1px solid oklch(1 0 0 / 10%);
+    border-radius: 999px;
+    padding: 7px 14px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--foreground);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.card-icon-btn {
+    width: 34px;
+    height: 34px;
+    flex: none;
+    border-radius: 999px;
+    background: oklch(0.15 0.02 280 / 78%);
+    backdrop-filter: blur(6px);
+    border: 1px solid oklch(1 0 0 / 10%);
+    color: var(--foreground);
+    display: grid;
+    place-items: center;
+    padding: 0;
+}
+
+.card-info-btn {
+    position: absolute;
+    right: 14px;
+    bottom: 150px;
+}
+
+.card-bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 70px 20px 22px;
+    background: linear-gradient(180deg, transparent, oklch(0.1 0.01 280 / 88%) 55%, oklch(0.08 0.01 280 / 96%));
+}
+
+.card-bottom h2 {
+    margin: 0 0 4px;
+    font-size: 26px;
+}
+
+.card-bottom h2 .idade { font-weight: 500; color: var(--muted-foreground); }
+
+.card-meta {
+    margin: 0 0 12px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--primary-glow);
+}
+
+.card-meta .nivel { color: var(--foreground); font-weight: 500; }
+
+.card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.card-tags .tag {
+    background: oklch(1 0 0 / 8%);
+    border: 1px solid oklch(1 0 0 / 12%);
+    margin: 0;
+}
+
+.card-bio-overlay {
+    position: absolute;
+    inset: 0;
+    background: oklch(0.1 0.01 280 / 92%);
+    backdrop-filter: blur(4px);
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    animation: fade-in-up 0.2s ease both;
+}
+
+@keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.card-bio-overlay[hidden] { display: none; }
+
+.card-bio-overlay p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--foreground);
+    margin: 0;
+}
+
+.empty {
+    background: var(--gradient-card);
+    border: 1px solid var(--border);
+    border-radius: 1.75rem;
+    aspect-ratio: 3 / 4.3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+/* ---------- action buttons ---------- */
+.swipe-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 22px;
+}
+
+.round-btn {
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 1px solid var(--border);
+}
+
+.round-btn-secondary {
+    width: 54px;
+    height: 54px;
+    background: var(--secondary);
+    color: var(--foreground);
+}
+
+.round-btn-secondary:hover { background: var(--accent); }
+
+.round-btn-small {
+    width: 42px;
+    height: 42px;
+    color: var(--muted-foreground);
+}
+
+.round-btn-small:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.round-btn-primary {
+    width: 64px;
+    height: 64px;
+    background-image: var(--gradient-primary);
+    border: none;
+    color: var(--primary-foreground);
+    box-shadow: var(--shadow-glow);
+}
+
+.round-btn-primary:hover { filter: brightness(1.06); }
+
+.round-btn:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+

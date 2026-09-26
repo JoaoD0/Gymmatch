@@ -1,0 +1,353 @@
+/* ---------- fileira ---------- */
+.moves-row-wrap {
+    margin: 0 -18px 24px;
+    padding: 0 18px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+}
+
+.moves-row-wrap::-webkit-scrollbar { display: none; }
+
+.moves-row {
+    display: flex;
+    gap: 12px;
+    padding: 4px 2px 12px;
+}
+
+.moves-item {
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 52px;
+    scroll-snap-align: start;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.moves-item:active { transform: scale(0.92); }
+
+.moves-avatar-wrap {
+    position: relative;
+    width: 52px;
+    height: 52px;
+}
+
+.moves-avatar-anel {
+    position: relative;
+    width: 52px;
+    height: 52px;
+    border-radius: 999px;
+    animation: moves-pulso-anel 2.5s ease-in-out infinite;
+}
+
+.moves-avatar-anel::before {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: 999px;
+    background: conic-gradient(from 0deg, var(--primary), var(--primary-glow), #fbbf24, var(--primary-glow), var(--primary));
+    animation: moves-girar 2.8s linear infinite;
+}
+
+@keyframes moves-girar { to { transform: rotate(360deg); } }
+
+@keyframes moves-pulso-anel {
+    0%, 100% { box-shadow: 0 0 0 0 oklch(0.68 0.21 22 / 0); }
+    50%      { box-shadow: 0 0 18px 5px oklch(0.68 0.21 22 / 0.55); }
+}
+
+@keyframes moves-pulsar-proprio {
+    0%   { transform: rotate(0deg);   opacity: 0.45; }
+    50%  { opacity: 0.9; }
+    100% { transform: rotate(360deg); opacity: 0.45; }
+}
+
+.moves-avatar-anel.pulsando { animation: none; }
+
+.moves-avatar-anel.pulsando::before {
+    inset: -1.5px;
+    background: conic-gradient(from 0deg, oklch(0.68 0.21 22 / 0.7), oklch(0.82 0.13 30 / 0.25), oklch(0.68 0.21 22 / 0.7));
+    animation: moves-pulsar-proprio 2.4s ease-in-out infinite;
+}
+
+.moves-avatar-interno {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: 999px;
+    background: var(--background);
+    padding: 3px;
+}
+
+.moves-avatar-anel.pulsando .moves-avatar-interno { padding: 0; }
+
+.moves-avatar-foto {
+    width: 100%;
+    height: 100%;
+    border-radius: 999px;
+    background-size: cover;
+    background-position: center;
+    background-color: oklch(0.19 0.015 280);
+    display: grid;
+    place-items: center;
+    color: color-mix(in oklch, var(--foreground) 30%, transparent);
+}
+
+.moves-avatar-foto svg { width: 18px; height: 18px; }
+.moves-avatar-foto svg.outro { width: 20px; height: 20px; }
+
+.moves-btn-add {
+    position: absolute;
+    bottom: -1px;
+    right: -1px;
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    background-image: var(--gradient-primary);
+    border: 2px solid var(--background);
+    box-shadow: 0 2px 6px oklch(0.68 0.21 22 / 0.5);
+    display: grid;
+    place-items: center;
+    color: #fff;
+}
+
+.moves-btn-add svg { width: 10px; height: 10px; }
+
+.moves-rotulo {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 700;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: color-mix(in oklch, var(--foreground) 50%, transparent);
+    max-width: 52px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.moves-rotulo.proprio { color: color-mix(in oklch, var(--foreground) 38%, transparent); }
+.moves-rotulo.tempo { color: var(--primary); }
+
+/* ---------- visualizador ---------- */
+.moves-viewer {
+    position: fixed;
+    inset: 0;
+    z-index: 600;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    max-width: 480px;
+    margin: 0 auto;
+    overflow: hidden;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.moves-viewer-foto {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: opacity 0.15s ease;
+}
+
+.moves-viewer-gradiente {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.1) 45%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.moves-progresso {
+    position: relative;
+    display: flex;
+    gap: 4px;
+    padding: 10px 12px 0;
+    z-index: 2;
+}
+
+.moves-progresso-trilho {
+    flex: 1;
+    height: 3px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.18);
+    overflow: hidden;
+}
+
+.moves-progresso-fill {
+    height: 100%;
+    width: 0%;
+    background-image: var(--gradient-primary);
+    border-radius: 999px;
+}
+
+.moves-progresso-trilho.atual .moves-progresso-fill {
+    box-shadow: 0 0 8px color-mix(in oklch, var(--primary) 70%, transparent);
+}
+
+.moves-viewer-header {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+}
+
+.moves-viewer-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--secondary);
+    box-shadow: 0 0 0 2.5px var(--primary), 0 0 0 4px color-mix(in oklch, var(--primary) 25%, transparent);
+    display: grid;
+    place-items: center;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    color: #fff;
+    flex: none;
+}
+
+.moves-viewer-info { flex: 1; min-width: 0; }
+
+.moves-viewer-nome {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.moves-viewer-tempo {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11.5px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 1px;
+}
+
+.moves-viewer-tempo svg { width: 11px; height: 11px; color: var(--primary); }
+
+.moves-viewer-acoes { display: flex; gap: 8px; flex: none; }
+
+.moves-icon-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    padding: 0;
+}
+
+.moves-icon-btn svg { width: 18px; height: 18px; }
+
+.moves-icon-btn.excluir { background: rgba(220, 38, 38, 0.25); color: #f87171; }
+
+.moves-viewer-corpo {
+    position: relative;
+    flex: 1;
+    z-index: 1;
+    display: flex;
+}
+
+.moves-viewer-zona {
+    flex: 1;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.moves-viewer-rodape {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 12px;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: rgba(255, 255, 255, 0.18);
+}
+
+.moves-viewer-rodape svg { width: 11px; height: 11px; }
+
+/* ---------- confirmações (excluir / denunciar) ---------- */
+.moves-confirma {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(6px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 32px;
+    gap: 8px;
+}
+
+.moves-confirma-icone {
+    width: 64px;
+    height: 64px;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 8px;
+}
+
+.moves-confirma-icone svg { width: 28px; height: 28px; }
+
+.moves-confirma-icone.excluir { background: rgba(220, 38, 38, 0.2); color: #ef4444; }
+.moves-confirma-icone.denunciar { background: rgba(234, 179, 8, 0.2); color: #eab308; }
+
+.moves-confirma h3 { color: #fff; font-size: 17px; margin: 0; }
+.moves-confirma p { color: rgba(255, 255, 255, 0.6); font-size: 13.5px; margin: 0 0 16px; max-width: 260px; }
+
+.moves-confirma-acoes { display: flex; gap: 10px; width: 100%; max-width: 280px; }
+
+.moves-confirma-btn {
+    flex: 1;
+    border: none;
+    border-radius: 999px;
+    padding: 12px;
+    font-size: 13.5px;
+    font-weight: 700;
+    margin-top: 0;
+}
+
+.moves-confirma-btn.cancelar {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.moves-confirma-btn.excluir {
+    background-image: linear-gradient(135deg, #dc2626, #ef4444);
+    color: #fff;
+}
+
+.moves-confirma-btn.denunciar {
+    background-image: linear-gradient(135deg, #ca8a04, #eab308);
+    color: #16161a;
+}
+
+.moves-confirma-btn.fechar {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
